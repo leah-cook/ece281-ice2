@@ -1,5 +1,3 @@
---+----------------------------------------------------------------------------
---| 
 --| COPYRIGHT 2017 United States Air Force Academy All rights reserved.
 --| 
 --| United States Air Force Academy     __  _______ ___    _________ 
@@ -11,8 +9,8 @@
 --| ---------------------------------------------------------------------------
 --|
 --| FILENAME      : halfAdder.vhd
---| AUTHOR(S)     : Capt Warner
---| CREATED       : 01/17/2017
+--| AUTHOR(S)     : Leah Cook
+--| CREATED       : 01/26/2024
 --| DESCRIPTION   : This file implements a one bit half adder.
 --|
 --| DOCUMENTATION : None
@@ -56,20 +54,26 @@ entity halfAdder is
   port(
 	i_A     : in  std_logic; -- 1-bit input port
 	i_B     : in  std_logic; 
-	o_S     : out std_logic  -- 1-bit output port
+	o_S     : out std_logic;  -- 1-bit output port
 							 -- (NOTE: NO semicolon on LAST port only!)
-	-- TODO:  Carry port
+	o_Cout : out std_logic --1-bit output port
   ); -- the semicolon is here instead
 end halfAdder;
 
 architecture halfAdder_arch of halfAdder is 
 	-- this is where you would include components declarations and signals if you needed them
-	  
+	   signal w_sw1 : std_logic := '0';
+     signal w_sw0 : std_logic := '0';
+     
+     
+     -- also need signals for the outputs of the UUT
+     signal w_led1 : std_logic := '0';
+     signal w_led0 : std_logic := '0';
 begin
 	-- this is where you would map ports for any component instantiations if you needed to
 
 	-- *concurrent* signal assignments
 	o_S    <= i_A xor i_B;
-	-- TODO:  Carry signal assignment
+	o_Cout <= i_A AND i_B;
 	
 end halfAdder_arch;
